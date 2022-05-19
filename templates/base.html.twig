@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {# Run `composer require symfony/webpack-encore-bundle`
+           and uncomment the following Encore helpers to start using Symfony UX #}
+        {% block stylesheets %}
+            <style>
+                nav{
+                    margin : 0 auto;
+                    width: 100%;
+                    background-color: black;
+                    position: sticky;
+                    top: 0px;
+                }
+
+                nav ul{
+                    list-style-type: none;
+                }
+
+                nav ul li{
+                    float: left;
+                    width: 20%;
+                    text-align: center;
+                    position: relative;
+                }
+
+                nav ul::after{
+                    content:"";
+                    display: table;
+                    clear: both;
+                }
+
+                nav a{
+                    display: block;
+                    text-decoration: none;
+                    color: white;
+                    border-bottom: 2px solid transparent;
+                    padding: 10px 0px ;
+                }
+
+                nav a:hover{
+                    color: white;
+                    border-bottom: 2px solid lightblue;
+                }
+
+                .ssmenu{
+                    display: none;
+                    box-shadow: 0px 1px 2px;
+                    background-color: black;
+                    position: absolute;
+                    width: 100%;
+                    z-index: auto;
+                }
+
+                nav > ul li:hover .ssmenu{
+                    display: block;
+                }
+
+                .ssmenu li{
+                    float: none;
+                    width: 100%;
+                    text-align: left;
+                }
+
+                .ssmenu a{
+                    padding: 10px;
+                    border-bottom: none;
+                }
+
+                .ssmenu a:hover{
+                    border-bottom: none;
+                    background-color: grey;
+                }
+
+
+
+
+            </style>
+
+        {% endblock %}
+        {% block menu %}
+
+    </head>
+    <nav>
+        <ul>
+            <li><a href="/">Accueil</a></li>
+            {% if app.user and is_granted("ROLE_ADMIN") %}
+            <li><a href="/article">Articles</a></li>
+            <li><a href="/classement" >Classement</a>
+                <ul class="ssmenu">
+
+                    <li><a href="/butDeLaSemaine">But de la semaine</a></li>
+                    <li><a  href="/club">Classement mondial</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+
+                </ul>
+            </li>
+            <li><a href ="/user">Gestion des utilisateur</a></li>
+            {%  endif %}
+            <li><a href="/articles">Equipe</a></li>
+            <li><a href="/news">News</a></li>
+            <li><a href="/ButSemaine">But De La Semaine</a></li>
+            <li><a class="nav-item nav-link" href="/apropos">A propos</a></li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            {% if app.user%}
+                <li  class="nav-item active">
+
+                    <a class="nav-link"  href="#">{{ app.user.email }}
+                    </a>
+
+                </li>
+                <li  class="nav-item active">
+                    <a class="nav-link" href="/logout">Se déconnecter
+                    </a>
+                </li>
+            {% else %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="/login">Se connecter
+                    </a>
+                </li>
+                <li class="nav-item active ">
+                    <a class="nav-link" href="/register">S'inscrire
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+    {%  endblock %}
+        {% block javascripts %}
+            {#{{ encore_entry_script_tags('app') }}#}
+        {% endblock %}
+
+    <body>
+
+
+
+        {% block body %}{% endblock %}
+    </body>
+</html>

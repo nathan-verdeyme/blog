@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ButDeLaSemaine index{% endblock %}
+
+{% block body %}
+    <h1>ButDeLaSemaine index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Video</th>
+                <th>Categorie</th>
+                <th>DatePublication</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for but_de_la_semaine in but_de_la_semaines %}
+            <tr>
+                <td>{{ but_de_la_semaine.id }}</td>
+                <td>{{ but_de_la_semaine.nom }}</td>
+                <td>{{ but_de_la_semaine.Video }}</td>
+                <td>{{ but_de_la_semaine.categorie }}</td>
+                <td>{{ but_de_la_semaine.datePublication ? but_de_la_semaine.datePublication|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('but_de_la_semaine_show', {'id': but_de_la_semaine.id}) }}">show</a>
+                    <a href="{{ path('but_de_la_semaine_edit', {'id': but_de_la_semaine.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('but_de_la_semaine_new') }}">Create new</a>
+{% endblock %}

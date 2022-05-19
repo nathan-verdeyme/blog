@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Equipes / CLubs{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <section  class="espace2">
+            {% for equipe in equipes  %}
+                <article id="Equipe" class="espace espace2">
+                    <h2>{{equipe.nom}}</h2>
+                    <div class="metadata">Crée le {{ equipe.dateEquipe | date('j / m / Y') }}</div>
+                    <div class="content">
+                        <img src=" {{ asset(equipe.images)}} " alt="" width="5%">
+                        {{ equipe.text }}
+
+                    </div>
+
+                </article>
+            {% endfor %}
+
+        </section>
+    </div>
+
+{% endblock %}

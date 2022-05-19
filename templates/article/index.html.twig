@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article index{% endblock %}
+
+{% block body %}
+    <h1>Article index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Image</th>
+                <th>Titre</th>
+                <th>Contenu</th>
+                <th>DateDePublication</th>
+                <th>DerniereMiseAJour</th>
+                <th>Publie</th>
+                <th>Tags</th>
+                <th>Categorie</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        <div class="card" style="width: 18rem;">
+        {% for article in articles %}
+
+            <tr>
+                <td>{{ article.id }}</td>
+                <td><{{ article.image }}</td>
+                <div class="card-body">
+                    <td><h5 class ="card-title"> {{ article.titre }} </h5></td>
+                <td>{{ article.contenu }}</td>
+                <td>{{ article.dateDePublication ? article.dateDePublication|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ article.derniereMiseAJour ? article.derniereMiseAJour|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ article.publie ? 'Yes' : 'No' }}</td>
+                    <td><small class="text-muted">{{ article.categorie }}</small></td>
+{#{{  article.tag  }}#}
+                <td>
+                    <a class="btn btn-primary" href="{{ path('article_show', {'id': article.id}) }}">show</a>
+                    <a class="btn btn-primary" href="{{ path('article_edit', {'id': article.id}) }}">edit</a>
+                </td>
+                </div>
+            </tr>
+
+
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </div>
+        </tbody>
+    </table>
+
+    <a href="{{ path('article_new') }}">Create new</a>
+{% endblock %}

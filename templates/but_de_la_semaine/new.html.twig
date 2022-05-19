@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New ButDeLaSemaine{% endblock %}
+
+{% block body %}
+    <h1>Create new ButDeLaSemaine</h1>
+
+    {{ include('but_de_la_semaine/_form.html.twig') }}
+
+    <a href="{{ path('but_de_la_semaine_index') }}">back to list</a>
+{% endblock %}

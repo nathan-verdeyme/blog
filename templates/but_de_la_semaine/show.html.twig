@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ButDeLaSemaine{% endblock %}
+
+{% block body %}
+    <h1>ButDeLaSemaine</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ but_de_la_semaine.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ but_de_la_semaine.nom }}</td>
+            </tr>
+            <tr>
+                <th>Video</th>
+                <td><iframe width="560" height="315" src="{{  but_de_la_semaine.Video }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
+            </tr>
+            <tr>
+                <th>Categorie</th>
+                <td>{{ but_de_la_semaine.categorie }}</td>
+            </tr>
+            <tr>
+                <th>DatePublication</th>
+                <td>{{ but_de_la_semaine.datePublication ? but_de_la_semaine.datePublication|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('but_de_la_semaine_index') }}">back to list</a>
+
+    <a href="{{ path('but_de_la_semaine_edit', {'id': but_de_la_semaine.id}) }}">edit</a>
+
+    {{ include('but_de_la_semaine/_delete_form.html.twig') }}
+{% endblock %}

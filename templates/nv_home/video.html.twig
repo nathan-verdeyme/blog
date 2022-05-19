@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vidéos{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <section  class="espace2">
+            {% for video in videos  %}
+                <article id="Equipe" class="espace espace2">
+                    <h2>{{video.nom}}</h2>
+                    <h6>Ajouter le {{ video.datePublication | date('j / m / Y') }}</h6>
+
+                    <h6>Catégorie : {{ video.categorie }}</h6>
+
+
+                    <div class="content">
+                        <iframe  width="25%" height="10%" src="{{ video.Video }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+
+
+
+                    </div>
+
+                </article>
+            {% endfor %}
+
+        </section>
+    </div>
+
+{% endblock %}

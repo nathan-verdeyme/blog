@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}News{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <section  class="espace2">
+
+            {% for new in news  %}
+                {% if new.publie == 'Y' %}
+                <article id="Equipe" class="espace espace2">
+                    <h2>{{new.titre}}</h2>
+                    <div class="metadata">Crée le {{ new.dateDePublication| date('j / m / Y') }}</div>
+                    <div class="content">
+                        <img src=" {{ asset(new.image)}} " alt="" width="20%">
+                        {{ new.contenu }}
+
+                    </div>
+
+                </article>
+                {% endif %}
+            {% endfor %}
+
+        </section>
+    </div>
+
+{% endblock %}
